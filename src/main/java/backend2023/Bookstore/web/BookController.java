@@ -1,6 +1,7 @@
 package backend2023.Bookstore.web;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -43,5 +44,16 @@ public class BookController {
 		bookRepository.deleteById(bookId);
 	 return "redirect:../booklist";
 	}
+	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+	public String edit(@PathVariable("id") Long bookId, Model model){
+		Optional<Book> book = bookRepository.findById(bookId);
+	 model.addAttribute("book", book);
+	 return "editbook";
+	}
+	@RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
+	public String saveEdit(Book book){
+		 bookRepository.save(book);
+		 return "redirect:/booklist";
+		}
 
 }
