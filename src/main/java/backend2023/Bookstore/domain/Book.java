@@ -14,6 +14,8 @@ public class Book {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+
+
 	private String title;
 	private String author;
 	@Column(name="publishing_year")
@@ -22,6 +24,19 @@ public class Book {
 	private double price;
 	
 	
+	public Book(Long id) {
+		super();
+		this.id = id;
+	}
+
+	public Book(String title, String author, int year, String isbn) {
+		super();
+		this.title = title;
+		this.author = author;
+		this.year = year;
+		this.isbn = isbn;
+	}
+
 	public Book(Long id, String title, String author, int year, String isbn, double price) {
 		super();
 		this.id = id;
@@ -30,6 +45,15 @@ public class Book {
 		this.year = year;
 		this.isbn = isbn;
 		this.price = price;
+	}
+	public Book(Long id, String title, String author, int year, String isbn) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.author = author;
+		this.year = year;
+		this.isbn = isbn;
+	
 	}
 
 	public Book(String title, String author, int year, String isbn, double price) {
@@ -45,7 +69,13 @@ public class Book {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	public Long getId() {
+		return id;
+	}
 
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public String getTitle() {
 		return title;
 	}

@@ -2,6 +2,8 @@ package backend2023.Bookstore;
 
 
 
+import java.util.List;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -25,6 +27,10 @@ public class BookstoreApplication {
 			Book book2 = new Book("Title2", "Author2", 1998, "23456", 16.50);
 			bookRepository.save(book1);
 			bookRepository.save(book2);
+			List<Book> books = (List<Book>)bookRepository.findAll();
+			for (Book book : books) {
+				System.out.println(book.toString());
+			}
 		};
 		
 	}
