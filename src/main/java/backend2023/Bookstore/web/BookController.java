@@ -50,10 +50,6 @@ public class BookController {
 	 model.addAttribute("book", book);
 	 return "editbook";
 	}
-	@RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
-	public String saveEdit(Book book){
-		 bookRepository.save(book);
-		 return "redirect:/booklist";
-		}
+
 
 }

@@ -24,6 +24,7 @@ public class Book {
 	private double price;
 	
 	
+	
 	public Book(Long id) {
 		super();
 		this.id = id;
