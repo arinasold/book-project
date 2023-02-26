@@ -29,27 +29,20 @@ public class BookstoreApplication {
 	public CommandLineRunner demoData(BookRepository bookRepository, CategoryRepository category) {
 		
 		return (args) -> {
-			Book book1 = new Book("Title1", "Author1", 1997, "12345", 15.50);
-			Book book2 = new Book("Title2", "Author2", 1998, "23456", 16.50);
-			bookRepository.save(book1);
-			bookRepository.save(book2);
-			List<Book> books = (List<Book>)bookRepository.findAll();
-			
 			Category category1 = new Category("Scifi");
 			Category category2 = new Category("Comic");
 			category.save(category1);
 			category.save(category2);
-			List<Category> categories = (List<Category>)category.findAll();
+			
+			bookRepository.save(new Book("Title1", "Author1", 1997, "12345", 15.50, category1));
+			bookRepository.save(new Book("Title2", "Author2", 1998, "23456", 16.50, category1));
+			bookRepository.save(new Book("Title3", "Author3", 1999, "23457", 19.50, category2));
+			
 			
 			log.info("fetch all books");
-			for (Book book : books) {
+			for (Book book : bookRepository.findAll()) {
 				log.info(book.toString());
 			};
-
-	        log.info("fetch all categories");
-	        for (Category cat : categories) {
-	            log.info(cat.toString());
-	        }
 
 		};
 		

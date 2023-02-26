@@ -1,9 +1,13 @@
 package backend2023.Bookstore.domain;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 // categoryid and name
 
@@ -14,6 +18,8 @@ public class Category {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long categoryid;
 	private String name;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
+	private List<Book> books;
 	
 	
 	public Category(String name) {
@@ -29,6 +35,16 @@ public class Category {
 
 	public Category() {
 		super();
+	}
+	
+	
+
+	public List<Book> getBooks() {
+		return books;
+	}
+
+	public void setBooks(List<Book> books) {
+		this.books = books;
 	}
 
 	public Long getCategoryid() {

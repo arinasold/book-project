@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 // title, author, year, isbn, price
 
@@ -22,54 +24,35 @@ public class Book {
 	private int year;
 	private String isbn;
 	private double price;
+	@ManyToOne
+	@JoinColumn(name = "categoryid")
+	private Category category;
 	
-	
-	
-	public Book(Long id) {
-		super();
-		this.id = id;
-	}
 
-	public Book(String title, String author, int year, String isbn) {
-		super();
-		this.title = title;
-		this.author = author;
-		this.year = year;
-		this.isbn = isbn;
-	}
-
-	public Book(Long id, String title, String author, int year, String isbn, double price) {
-		super();
-		this.id = id;
-		this.title = title;
-		this.author = author;
-		this.year = year;
-		this.isbn = isbn;
-		this.price = price;
-	}
-	public Book(Long id, String title, String author, int year, String isbn) {
-		super();
-		this.id = id;
-		this.title = title;
-		this.author = author;
-		this.year = year;
-		this.isbn = isbn;
-	
-	}
-
-	public Book(String title, String author, int year, String isbn, double price) {
+	public Book(String title, String author, int year, String isbn, double price, Category category) {
 		super();
 		this.title = title;
 		this.author = author;
 		this.year = year;
 		this.isbn = isbn;
 		this.price = price;
+		this.category = category;
 	}
 
 	public Book() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -119,8 +102,13 @@ public class Book {
 
 	@Override
 	public String toString() {
+		if (this.category != null)
 		return "Book [title=" + title + ", author=" + author + ", year=" + year + ", isbn=" + isbn + ", price=" + price
-				+ "]";
+				+ "category = " + this.getCategory() +"]";
+		else
+			return "Book [title=" + title + ", author=" + author + ", year=" + year + ", isbn=" + isbn + ", price=" + price
+					+ "]";
+			
 	}
 
 	
